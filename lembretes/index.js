@@ -14,6 +14,7 @@ app.use(express.json())
     "2": {"id": "2", "texto": "Ver um filme"}
   }
 */
+
 const lembretes = {}
 let id = 1
 
