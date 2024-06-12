@@ -14,7 +14,7 @@ const observacoesPorLembreteId = {}
 const funcoes = {
   ObservacaoClassificada: async (observacao) => {
     const observacoes = 
-      observacoesPorLembreteId[observacao.lembreteId]
+      observacoesPorLembreteId[observacaolembreteId]
     const obsParaAtualizar = observacoes.find(o => o.id === observacao.id)
     obsParaAtualizar.status = observacao.status
     await axios.post(

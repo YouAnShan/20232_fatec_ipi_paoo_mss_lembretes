@@ -16,14 +16,19 @@ app.post('/eventos', async (req, res) => {
   const { type } = evento
 
   try {
-    if (type === 'ObservacaoClassificada') {
-      await axios.post('http://localhost:7000/eventos', evento) // Observações
-    } else {
-      await axios.post('http://localhost:5000/eventos', evento) // Consulta
-      if (type === 'ObservacaoCriada') {
-        await axios.post('http://localhost:6000/eventos', evento) // Classificação
-      }
+    if (evento.type === 'LembreteClassificado'){
+      await axios.post('http://localhost:4000/eventos', evento) //Lembretes
     }
+    if (evento.type === 'ObservacaoClassificada') {
+      await axios.post('http://localhost:5000/eventos', evento) // Observações
+    }  
+    if (evento.type !== 'ObservacaoClassificada' && evento.type !== 'LembreteClassificado'){
+    await axios.post('http://localhost:6000/eventos', evento) // Consulta
+    }
+    if (evento.type === 'ObservacaoCriada' || evento.type === 'LembreteCriado') {
+        await axios.post('http://localhost:7000/eventos', evento) // Classificação
+      }
+    
   } catch (error) {
     console.error('Erro ao enviar evento:', error.message)
   }
